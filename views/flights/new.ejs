@@ -1,0 +1,42 @@
+<%- include('../partials/header') -%>
+
+    <form action="/flights" method="POST">
+        <div class="form-group">
+            <label for="airline">Airline Company
+                <select class="form-control" name="airline">
+                    <option value="American">American Airline</option>
+                    <option value="Delta">Delta</option>
+                    <option value="Southwest">Southwest</option>
+                    <option value="United">United</option>
+                    <option value="Air-France">Air France</option>
+                </select>
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="airport">Airport
+                <select class="form-control" name="airport">
+                    <option value="ATL">ATL</option>
+                    <option value="DFW">DFW</option>
+                    <option value="DEN">DEN</option>
+                    <option value="LAX">LAX</option>
+                    <option value="SFO">SFO</option>
+                </select>
+                <!-- <input type="text" name="airport"> -->
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="flightNo">Flight No.
+                <input  class="form-control" type="text" name="flightNo">
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="departs">Departure Date
+                <input  class="form-control" type="datetime-local" name="departs" value="<%= departsDate %>">
+            </label>
+        </div>
+        <button  class="btn btn-success"type="submit">Add Flight</button>
+    </form>
+
+
+
+<%- include('../partials/footer') -%>

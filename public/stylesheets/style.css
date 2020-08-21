@@ -1,0 +1,22 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+main{
+  padding: 50px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+label {
+  font-size: 1.25rem;
+  display: inline-block;
+}
+
+.red {
+  color: red;
+}
+
+
