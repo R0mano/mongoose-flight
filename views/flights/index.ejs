@@ -1,28 +1,41 @@
 <%- include('../partials/header') -%>
 
-  <h1>Flights List</h1>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Airline</th>
-        <th scope="col">Airport</th>
-        <th scope="col">Flight No</th>
-        <th scope="col">departs</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Write the line of EJS to iterate over movies using forEach -->
-      <% flights.forEach(function(flight) { %>
-      <tr>
-        <td><%= flight.airline %></td>
-        <td><%= flight.airport %></td>
-        <td><%= flight.flightNo %></td>
-        <td class="departs"><%= flight.departs.toDateString() %></td>
-      </tr>
-      <% }); %>
-    </tbody>
-  </table>
-  <a href="/flights/new">Add Flight</a>
-
+<h1>Flights List</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Departure Airport</th>
+      <th scope="col">Destination Airport(s)</th>
+      <th scope="col">Airline</th>
+      <th scope="col">Flight No</th>
+      <th scope="col">Departure Date</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Write the line of EJS to iterate over movies using forEach -->
+    <% flights.forEach(function(flight) { %>
+    <tr>
+      <td><%= flight.airport %></td>
+      <td>
+       <% if(flight.destinations.length) {flight.destinations.forEach(function(des) { %>
+        <%= `${des.airport}, ` %>
+        <% })} %>
+      </td>
+      <td><%= flight.airline %></td>
+      <td><%= flight.flightNo %></td>
+      <td class="departs"><%= flight.departs.toDateString() %></td>
+      <td>
+        <a
+          class="btn btn-sm btn-outline-primary"
+          href="/flights/<%= flight.id %>"
+          >Details</a
+        >
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+<a href="/flights/new">Add Flight</a>
 
 <%- include('../partials/footer') -%>

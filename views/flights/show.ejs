@@ -1,0 +1,45 @@
+<%- include('../partials/header') -%>
+
+<section id="show-page">
+  <div>
+    <strong>From:</strong> <span><%= flight.airport %></span>
+    <br />
+    <strong>Departure Date: </strong><span><%= flight.departs%></span>
+  </div>
+  <br />
+  <div>
+    <strong>To:</strong>
+    <ul>
+      <% flight.destinations.forEach(function(des) { %>
+      <li><%= `${des.airport}, Arrival: ${des.arrival}` %></li>
+      <% }); %>
+    </ul>
+    <div></div>
+  </div>
+  <br />
+  <div><strong>Airline: </strong><span><%= flight.airline %></span></div>
+  <div><strong>Flight No: </strong><span><%= flight.flightNo %></span></div>
+</section>
+<br /><br /><br />
+<section>
+  <form action="/flights/<%= flight._id %>/destinations" method="POST">
+    <div class="form-group">
+      <label for="airport"
+        >Destinations:
+        <select class="form-control" name="airport">
+          <option value="AUS">AUS</option>
+          <option value="DFW">DFW</option>
+          <option value="DEN">DEN</option>
+          <option value="LAX">LAX</option>
+          <option value="SFO">SFO</option>
+        </select>
+      </label>
+    </div>
+    <button class="btn btn-sm btn-success" type="submit">
+      Add Destination
+    </button>
+    <a class="btn btn-sm btn-primary" href="/flights">Return to Flights</a>
+  </form>
+</section>
+
+<%- include('../partials/footer') -%>

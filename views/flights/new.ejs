@@ -2,6 +2,28 @@
 
     <form action="/flights" method="POST">
         <div class="form-group">
+            <label for="airport">From:
+                <select class="form-control" name="airport">
+                    <option value="ATL">ATL</option>
+                    <option value="DFW">DFW</option>
+                    <option value="DEN">DEN</option>
+                    <option value="LAX">LAX</option>
+                    <option value="SFO">SFO</option>
+                </select>
+            </label>
+        </div>
+        <!-- <div class="form-group">
+            <label for="destination">To:
+                <select class="form-control" name="destination">
+                    <option value="AUS">AUS</option>
+                    <option value="DFW">DFW</option>
+                    <option value="DEN">DEN</option>
+                    <option value="LAX">LAX</option>
+                    <option value="SFO">SFO</option>
+                </select>
+            </label>
+        </div> -->
+        <div class="form-group">
             <label for="airline">Airline Company
                 <select class="form-control" name="airline">
                     <option value="American">American Airline</option>
@@ -12,18 +34,7 @@
                 </select>
             </label>
         </div>
-        <div class="form-group">
-            <label for="airport">Airport
-                <select class="form-control" name="airport">
-                    <option value="ATL">ATL</option>
-                    <option value="DFW">DFW</option>
-                    <option value="DEN">DEN</option>
-                    <option value="LAX">LAX</option>
-                    <option value="SFO">SFO</option>
-                </select>
-                <!-- <input type="text" name="airport"> -->
-            </label>
-        </div>
+        
         <div class="form-group">
             <label for="flightNo">Flight No.
                 <input  class="form-control" type="text" name="flightNo">
