@@ -19,4 +19,21 @@ label {
   color: red;
 }
 
+.delete-form {
+  display: inline-block;
+  margin-right: 10px;
+}
 
+.delete-form button {
+  color: rgb(203, 68, 74);;
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: .75rem;
+  /* width: 12px; */
+  /* padding: 100%; */
+}
+
+li {
+  list-style: none;
+}

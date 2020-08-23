@@ -4,14 +4,22 @@
   <div>
     <strong>From:</strong> <span><%= flight.airport %></span>
     <br />
-    <strong>Departure Date: </strong><span><%= flight.departs%></span>
+    <strong>Departure: </strong><span><%= flight.departs%></span>
   </div>
   <br />
   <div>
     <strong>To:</strong>
     <ul>
       <% flight.destinations.forEach(function(des) { %>
-      <li><%= `${des.airport}, Arrival: ${des.arrival}` %></li>
+      <li><%= des.airport %>, <strong>Arrival: </strong><%= des.arrival %>
+        <form
+          action="/destinations/<%= des._id %>?_method=DELETE"
+          method="POST"
+          class="delete-form"
+        >
+          <button value="<%= flight.id %>" name="id" type="submit">&#10006;</button>
+        </form>
+      </li>
       <% }); %>
     </ul>
     <div></div>

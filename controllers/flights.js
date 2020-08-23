@@ -9,7 +9,7 @@ module.exports = {
 
 function index(req, res) {
   Flight.find({}, function (err, flights) {
-    flights.sort((a, b) => b.departs - a.departs);
+    flights.sort((a, b) => a.departs - b.departs);
     res.render("flights/index", { flights });
     // console.log(flights);
   });

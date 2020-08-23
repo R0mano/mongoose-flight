@@ -10,9 +10,6 @@ const destinationSchema = new Schema(
     },
     arrival: {
       type: Date,
-    //   default: function() {
-        // new Date(new Date().getTime() + (Math.floor((Math.random() * 480)) + 60)*60000);
-    //   },
     },
   },
   {
@@ -41,7 +38,6 @@ const flightSchema = new Schema(
       type: Date,
       default: function () {
         return new Date(new Date().setFullYear(new Date().getFullYear() + 1));
-        // new Date().getFullYear() + 1
       },
     },
   },
