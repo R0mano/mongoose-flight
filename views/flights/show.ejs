@@ -1,53 +1,81 @@
 <%- include('../partials/header') -%>
 
 <section id="show-page">
+
   <div>
-    <strong>From:</strong> <span><%= flight.airport %></span>
-    <br />
-    <strong>Departure: </strong><span><%= flight.departs%></span>
+    <strong>Flight from: </strong><span id="departure" ><%= flight.airport %></span>
+    <strong>Airline: </strong><span><%= flight.airline %></span>
+  <strong>Flight No: </strong><span><%= flight.flightNo %></span> <br>
+    <strong>Departure: </strong><span><%= flight.departs.toLocaleString()%></span>
+    <% if(tickets.length) { %>
+      <button type="button" class="btn btn-sm btn-outline-primary" id="eTicket"
+      ><%= tickets.length %> eTicket</button></td>
+   <% }%>
+   <div id="popover-content" class="hide" >
+    <% tickets.forEach((ticket) => { %> 
+      <strong>Seat:</strong> <%=ticket.seat %> 
+      <form
+      action="/flights/<%= ticket._id %>?_method=DELETE"
+      method="POST"
+      
+    >
+      <button class="btn btn-primary" value="<%= ticket.id %>" type="submit">&#10006;</button>
+    </form></br> 
+      <strong>Price:</strong> $<%=ticket.price %> <br> <br>
+       <% }); %>
+   </div>
   </div>
+<strong></strong>
   <br />
-  <div>
-    <strong>To:</strong>
-    <ul>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Destintions</th>
+        <th scope="col">Arrival Time</th>
+      </tr>
+    </thead>
+
+    <tbody>
       <% flight.destinations.forEach(function(des) { %>
-      <li><%= des.airport %>, <strong>Arrival: </strong><%= des.arrival %>
-        <form
+      <tr>
+        <td>
+          <form
           action="/destinations/<%= des._id %>?_method=DELETE"
           method="POST"
           class="delete-form"
         >
           <button value="<%= flight.id %>" name="id" type="submit">&#10006;</button>
         </form>
-      </li>
-      <% }); %>
-    </ul>
-    <div></div>
-  </div>
-  <br />
-  <div><strong>Airline: </strong><span><%= flight.airline %></span></div>
-  <div><strong>Flight No: </strong><span><%= flight.flightNo %></span></div>
-</section>
-<br /><br /><br />
-<section>
-  <form action="/flights/<%= flight._id %>/destinations" method="POST">
-    <div class="form-group">
-      <label for="airport"
+          <span id="desAirports"> <%= des.airport %> </span></td>
+        <td>
+          <%= des.arrival %>
+        </td>
+        <%});%>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+  
+  <section>
+    <form action="/flights/<%= flight._id %>/destinations" method="POST">
+      <div class="form-group">
+        <label for="airport"
         >Destinations:
-        <select class="form-control" name="airport">
-          <option value="AUS">AUS</option>
-          <option value="DFW">DFW</option>
-          <option value="DEN">DEN</option>
-          <option value="LAX">LAX</option>
-          <option value="SFO">SFO</option>
-        </select>
-      </label>
-    </div>
-    <button class="btn btn-sm btn-success" type="submit">
-      Add Destination
-    </button>
+        <select class="form-control destination-options" name="airport">
+          <% allowedDestinations.forEach(function(d) { %>
+            <option value="<%= d %>"><%= d %></option>
+            <% }); %>
+          </select>
+        </label>
+      </div>
+      <button class="btn btn-sm btn-success" type="submit">
+        Add Destination
+      </button>
+      <a class="btn btn-sm btn-primary" id="ticketButton" href="/flights/<%= flight.id %>/tickets/new"> New Ticket</a>
     <a class="btn btn-sm btn-primary" href="/flights">Return to Flights</a>
   </form>
+  <small id="message"></small>
 </section>
 
 <%- include('../partials/footer') -%>

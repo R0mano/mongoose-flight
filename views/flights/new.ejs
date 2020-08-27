@@ -1,53 +1,59 @@
 <%- include('../partials/header') -%>
 
-    <form action="/flights" method="POST">
-        <div class="form-group">
-            <label for="airport">From:
-                <select class="form-control" name="airport">
-                    <option value="ATL">ATL</option>
-                    <option value="DFW">DFW</option>
-                    <option value="DEN">DEN</option>
-                    <option value="LAX">LAX</option>
-                    <option value="SFO">SFO</option>
-                </select>
-            </label>
-        </div>
-        <!-- <div class="form-group">
-            <label for="destination">To:
-                <select class="form-control" name="destination">
-                    <option value="AUS">AUS</option>
-                    <option value="DFW">DFW</option>
-                    <option value="DEN">DEN</option>
-                    <option value="LAX">LAX</option>
-                    <option value="SFO">SFO</option>
-                </select>
-            </label>
-        </div> -->
-        <div class="form-group">
-            <label for="airline">Airline Company
-                <select class="form-control" name="airline">
-                    <option value="American">American Airline</option>
-                    <option value="Delta">Delta</option>
-                    <option value="Southwest">Southwest</option>
-                    <option value="United">United</option>
-                    <option value="Air-France">Air France</option>
-                </select>
-            </label>
-        </div>
-        
-        <div class="form-group">
-            <label for="flightNo">Flight No.
-                <input  class="form-control" type="text" name="flightNo">
-            </label>
-        </div>
-        <div class="form-group">
-            <label for="departs">Departure Date
-                <input  class="form-control" type="datetime-local" name="departs" value="<%= departsDate %>">
-            </label>
-        </div>
-        <button  class="btn btn-success"type="submit">Add Flight</button>
-    </form>
+<form action="/flights" method="POST">
+  <div class="form-group">
+    <label for="airport"
+      >From:
+      <select class="form-control" name="airport">
+        <option value="ATL">ATL</option>
+          <option value="AUS">AUS</option>
+          <option value="BJS">BJS</option>
+          <option value="DEN">DEN</option>
+          <option value="DFW">DFW</option>
+          <option value="HOU">HOU</option>
+          <option value="JFK">JFK</option>
+          <option value="LAX">LAX</option>
+          <option value="LON">LON</option>
+          <option value="MRS">MRS</option>
+          <option value="SEA">SEA</option>
+          <option value="SFO">SFO</option>
+          <option value="TYO">TYO</option>
+      </select>
+    </label>
+  </div>
 
+  <div class="form-group">
+    <label for="airline"
+      >Airline Company
+      <select class="form-control" name="airline">
+        <option value="American">American Airline</option>
+        <option value="Delta">Delta</option>
+        <option value="Southwest">Southwest</option>
+        <option value="United">United</option>
+        <option value="Air-France">Air France</option>
+      </select>
+    </label>
+  </div>
 
+  <div class="form-group">
+    <label for="flightNo"
+      >Flight No.
+      <input class="form-control" type="text" name="flightNo" />
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="departs"
+      >Departure Date
+      <input
+        class="form-control"
+        type="datetime-local"
+        name="departs"
+        value="<%= departsDate %>"
+      />
+    </label>
+  </div>
+  <button class="btn btn-success" type="submit">Add Flight</button>
+  <a class="btn btn-primary" href="/flights">Return to Flights</a>
+</form>
 
 <%- include('../partials/footer') -%>

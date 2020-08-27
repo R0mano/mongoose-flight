@@ -4,10 +4,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
+require('./config/database');
 
 const indexRouter = require('./routes/index');
 const flightsRouter = require('./routes/flights');
 const destinationsRouter = require('./routes/destinations');
+const ticketsRouter = require('./routes/tickets');
 
 const app = express();
 
@@ -22,11 +24,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'))
 
-require('./config/database');
 
 app.use('/', indexRouter);
 app.use('/flights', flightsRouter);
 app.use('/', destinationsRouter);
+app.use('/', ticketsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

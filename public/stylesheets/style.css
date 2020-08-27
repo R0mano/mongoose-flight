@@ -37,3 +37,20 @@ label {
 li {
   list-style: none;
 }
+
+#navigation1 {
+  color: white;
+}
+
+#navigation2{
+  color: white;
+}
+
+.navigation {
+  margin-left: auto;
+  color: white;
+}
+
+.hide {
+  display: none;
+}

@@ -1,0 +1,68 @@
+<%- include('../partials/header') -%>
+
+<section>
+  <h3>Flight summary</h3>
+  <table class="table">
+    <thead></thead>
+    <tbody>
+      <tr>
+        <th scope="row">From:</th>
+        <td><%= flight.airport %></td>
+        <th>Departure time:</th>
+        <td><%= flight.departs.toLocaleString() %></td>
+      </tr>
+      <tr>
+        <th scope="row">To:</th>
+        <td>
+          <% flight.destinations.forEach((des) => { %> <%= des.airport %> <br />
+          <% }); %>
+        </td>
+        <th>Arrival Time:</th>
+        <td>
+          <% flight.destinations.forEach((des) => { %> 
+            <%= des.arrival.toLocaleString() %> <br />
+          <% }); %>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Flight Number:</th>
+        <td><%= flight.flightNo %></td>
+        <th>Airline Company</th>
+        <td><%= flight.airline %></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<br /><br />
+<section>
+  <form action="/flights/<%= flight._id %>/tickets" method="POST">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="seat">Seat</label>
+        <input
+          type="text"
+          class="form-control"
+          name="seat"
+          placeholder="Pick a seat"
+          required
+          pattern="[A-F][1-9]\d?"
+        />
+        <small id="seat" class="form-text text-muted">
+          Must be 'A1' thru 'F99'</small
+        >
+      </div>
+      <div class="form-group col-md-6">
+        <label for="price">Class</label>
+        <select name="price" class="form-control" id="price">
+          <% classes.forEach((c) => { %>
+          <option value="<%= c.price %>"><%= c.name %> ($<%= c.price %>)</option>
+          <% }); %>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-success" type="submit" >Add Ticket</button>
+    <a class="btn btn-primary" href="/flights/<%= flight.id %>">Return to flight's destinations</a>
+  </form>
+</section>
+
+<%- include('../partials/footer') -%>
