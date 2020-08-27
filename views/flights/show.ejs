@@ -3,10 +3,12 @@
 <section id="show-page">
 
   <div>
-    <strong>Flight from: </strong><span id="departure" ><%= flight.airport %></span>
-    <strong>Airline: </strong><span><%= flight.airline %></span>
-  <strong>Flight No: </strong><span><%= flight.flightNo %></span> <br>
+    <strong>Flight from: </strong><span id="departure" ><%= flight.airport %></span><br><br>
+    <strong>Airline: </strong><span><%= flight.airline %></span> -  
+  <strong>Flight No: </strong><span><%= flight.flightNo %></span> <br><br>
     <strong>Departure: </strong><span><%= flight.departs.toLocaleString()%></span>
+    <a class="btn btn-sm btn-primary" id="ticketButton" href="/flights/<%= flight.id %>/tickets/new"> New Ticket</a>
+
     <% if(tickets.length) { %>
       <button type="button" class="btn btn-sm btn-outline-primary" id="eTicket"
       ><%= tickets.length %> eTicket</button></td>
@@ -14,13 +16,7 @@
    <div id="popover-content" class="hide" >
     <% tickets.forEach((ticket) => { %> 
       <strong>Seat:</strong> <%=ticket.seat %> 
-      <form
-      action="/flights/<%= ticket._id %>?_method=DELETE"
-      method="POST"
-      
-    >
-      <button class="btn btn-primary" value="<%= ticket.id %>" type="submit">&#10006;</button>
-    </form></br> 
+     </br> 
       <strong>Price:</strong> $<%=ticket.price %> <br> <br>
        <% }); %>
    </div>
@@ -56,26 +52,54 @@
       </tbody>
     </table>
   </section>
-  
-  <section>
+  <hr>
+  <section class="action">
     <form action="/flights/<%= flight._id %>/destinations" method="POST">
       <div class="form-group">
+        <!-- _____________________________________________________________________________________________ -->
         <label for="airport"
-        >Destinations:
-        <select class="form-control destination-options" name="airport">
+        >Add a destination:
+        <select class="form-control" name="airport">
           <% allowedDestinations.forEach(function(d) { %>
             <option value="<%= d %>"><%= d %></option>
             <% }); %>
           </select>
         </label>
       </div>
-      <button class="btn btn-sm btn-success" type="submit">
+      <button class="btn btn-success" type="submit">
         Add Destination
       </button>
-      <a class="btn btn-sm btn-primary" id="ticketButton" href="/flights/<%= flight.id %>/tickets/new"> New Ticket</a>
-    <a class="btn btn-sm btn-primary" href="/flights">Return to Flights</a>
+    
   </form>
   <small id="message"></small>
 </section>
+<% if (tickets.length) { %>
+  <hr>
+<section class="action">
+  <form
+  action="/flights/<%= flight._id %>/tickets?_method=DELETE"
+  method="POST">
+  <div class="form-group">
+  <label for="ticket">Cancel a ticket
+  <select class="form-control"  name="ticket" id="ticket">Cancel a ticket
+    <% tickets.forEach((ticket) => { %>
+      <option value="<%= ticket.id %>">
+        <strong>Seat:</strong> <%= ticket.seat %> 
+     </br> 
+      <strong>Price:</strong> $<%= ticket.price %> <br>
+      </option>
+   <% }); %>
+  </select>
+</label>
+</div>
+  <button class="btn btn-primary" type="submit">Cancel ticket</button>
+
+</form>
+</section>
+<% } %>
+
+<a class="btn btn-primary" href="/flights">Return to Flights</a>
+
+  
 
 <%- include('../partials/footer') -%>

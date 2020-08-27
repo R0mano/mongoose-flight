@@ -6,6 +6,10 @@ main{
   padding: 50px;
 }
 
+section {
+  margin-bottom: 10vh;;
+}
+
 a {
   color: #00B7FF;
 }
@@ -13,6 +17,10 @@ a {
 label {
   font-size: 1.25rem;
   display: inline-block;
+}
+
+.action {
+  text-align: center;
 }
 
 .red {
